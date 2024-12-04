@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '../config';
 import bycrypt from 'bcrypt';
 import {authMiddleware} from '../authmiddleware';
-import mongoose from 'mongoose';
+
 
 
 

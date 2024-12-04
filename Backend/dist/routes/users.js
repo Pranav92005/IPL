@@ -20,7 +20,6 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("../config");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const authmiddleware_1 = require("../authmiddleware");
-const mongoose_1 = __importDefault(require("mongoose"));
 const createUserSchema = zod_1.default.object({
     email: zod_1.default.string().email(),
     password: zod_1.default.string().min(6),
@@ -113,51 +112,4 @@ userRouter.put('/team', authmiddleware_1.authMiddleware, (req, res) => __awaiter
     res.json({ message: "Team updated successfully" });
 }));
 //add to cart route 
-const cartschema = zod_1.default.object({
-    email: zod_1.default.string().email(),
-    productid: zod_1.default.string(),
-});
-userRouter.put('/addtocart', authmiddleware_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const parsedPayload = cartschema.safeParse(req.body);
-    if (!parsedPayload.success) {
-        res.status(411).json({ message: "Invalid payload" });
-    }
-    try {
-        // Find the user by email
-        const user = yield models_1.User.findOne({ email: req.body.email });
-        if (!user) {
-            res.status(403).json({ message: "User not found" });
-        }
-        // Ensure `productid` is a valid ObjectId
-        const productId = new mongoose_1.default.Types.ObjectId(req.body.productid);
-        // Check if the product is already in the user's cart
-        if (user) {
-            const isInCart = user.cart.some((item) => item.productId.toString() === productId.toString());
-            if (isInCart) {
-                res.status(409).json({ message: "Product is already in the cart" });
-                return;
-            }
-            // Update the user's cart by adding the product object
-            const updatedUser = yield models_1.User.findByIdAndUpdate(user._id, { $push: { cart: { productId } } }, // Push object with productId field
-            { new: true } // Return the updated document
-            );
-            if (!updatedUser) {
-                res.status(500).json({ message: "Internal server error" });
-                return;
-            }
-            // Respond with success message and updated cart
-            res.json({
-                message: "Product added to cart successfully",
-                cart: updatedUser.cart,
-            });
-        }
-        else {
-            res.status(403).json({ message: "User not found" });
-        }
-    }
-    catch (error) {
-        console.error("Error adding product to cart:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-}));
 exports.default = userRouter;

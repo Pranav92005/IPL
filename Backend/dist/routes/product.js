@@ -17,15 +17,6 @@ const models_1 = require("../models");
 const productRouter = express_1.default.Router();
 const multer_1 = __importDefault(require("multer"));
 const authmiddleware_1 = require("../authmiddleware");
-// const createProductSchema = zod.object({
-//     image: zod.string(),
-//   name: zod.string(),
-//   price: zod.number().positive(),
-//   description: zod.string(),
-//   category: zod.string(),
-//   countInStock: zod.number().positive(),
-//   iplteam: zod.string(),
-// });
 const storage = multer_1.default.diskStorage({
     destination: (req, file, cb) => cb(null, "uploads/"), // Save to "uploads" folder
     filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`), // Unique name
