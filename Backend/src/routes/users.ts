@@ -4,7 +4,7 @@ import { User } from '../models';
 import zod from 'zod';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '../config';
-import bycrypt from 'bcrypt';
+import bycrypt from 'bcryptjs';
 import {authMiddleware} from '../authmiddleware';
 
 
