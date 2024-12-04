@@ -11,7 +11,7 @@ An IPL-themed e-commerce platform that allows users to select their favorite IPL
 - **Merchandise Store**: Explore team-specific merchandise like jerseys, caps, and accessories.
 - **Secure Authentication**: JWT-based authentication implemented with Zod validation.
 - **Tech Stack**:
-  - **Frontend**: Vite + React + TypeScript, with SADCN for UI components.
+  - **Frontend**: Vite + React + TypeScript,Tailwind CSS for styling with SADCN for some UI components.
   - **Backend**: Express.js with TypeScript.
   - **Database**: MongoDB.
 
@@ -109,7 +109,7 @@ An IPL-themed e-commerce platform that allows users to select their favorite IPL
 
 | Component    | Technology         |
 |--------------|---------------------|
-| **Frontend** | Vite, React, TypeScript, SADCN |
+| **Frontend** | Vite, React, TypeScript,Tailwind CSS, SADCN |
 | **Backend**  | Express, TypeScript |
 | **Database** | MongoDB             |
 | **Auth**     | JWT, Zod            |
