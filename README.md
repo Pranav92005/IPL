@@ -49,7 +49,7 @@ An IPL-themed e-commerce platform that allows users to select their favorite IPL
 
    #### Backend `.env`
    ```env
-   PORT=5000
+   PORT=3000
    MONGO_URI=<your-mongodb-connection-string>
    JWT_SECRET=<your-jwt-secret>
    ```
