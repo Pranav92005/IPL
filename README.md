@@ -28,8 +28,8 @@ An IPL-themed e-commerce platform that allows users to select their favorite IPL
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/ipl-ecommerce.git
-   cd ipl-ecommerce
+   git clone https://github.com/Pranav92005/IPL.git
+   
    ```
 
 2. **Install Dependencies**
@@ -50,8 +50,8 @@ An IPL-themed e-commerce platform that allows users to select their favorite IPL
    #### Backend `.env`
    ```env
    PORT=3000
-   MONGO_URI=<your-mongodb-connection-string>
-   JWT_SECRET=<your-jwt-secret>
+   DATABASE_URL=""
+   JWT_SECRET=""
    ```
 
 
@@ -79,9 +79,9 @@ An IPL-themed e-commerce platform that allows users to select their favorite IPL
 | Variable         | Description                                       |
 |-------------------|---------------------------------------------------|
 | `PORT`           | Port number for the backend server                |
-| `MONGO_URI`      | MongoDB connection string                         |
+| `DATABASE_URL`      | MongoDB connection string                         |
 | `JWT_SECRET`     | Secret key for signing JWT tokens                 |
-| `VITE_API_URL`   | URL of the backend API, used by the frontend       |
+| `API_URL`   | URL of the backend API, used by the frontend       |
 
 ---
 
