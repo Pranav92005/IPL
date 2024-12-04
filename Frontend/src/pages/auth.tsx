@@ -55,82 +55,69 @@ export default function AuthPage() {
 
 
 //handle signin
-  const handleSignin = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setIsLoading(true)
-    
-    axios.post(`${API_ROUTE_URL}/user/signin`, {
-        email,
-        password,
-    
-        }).then((response) => {
-        console.log(response);
-        const data = response.data as { token: string ,name:string,team:string};
-        localStorage.setItem('token', data.token);
-        const username=data.name;
-        setName(username);
-        const userteam=data.team;
-        setTeam(userteam);
-        setSignupCompleted(true);
-      
-      
-        
-   
+  // handle signin
+const handleSignin = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  setIsLoading(true);
 
-        }).catch((error) => {
-        console.error(error)
+  try {
+    const response = await axios.post(`${API_ROUTE_URL}/user/signin`, {
+      email,
+      password,
+    });
 
-        toast.error("Invalid Credentials", {
-          style: { background: "#EF4444", color: "#FFF" },
-          duration: 2000,
-      });
-
-        })
-     
-    setIsLoading(false)
-  }
-
-
-  //handle signup
-
-  const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setIsLoading(true)
-
-    if(!iplteam){
-      toast.error("Please select your favorite team", {
-        style: { background: "#EF4444", color: "#FFF" },
-        duration: 2000,
-
-    })
+    const data = response.data as { token: string; name: string; team: string };
+    localStorage.setItem("token", data.token);
+    setName(data.name);
+    setTeam(data.team);
+    setSignupCompleted(true);
+  } catch (error) {
+    console.error(error);
+    toast.error("Invalid Credentials", {
+      style: { background: "#EF4444", color: "#FFF" },
+      duration: 2000,
+    });
+  } finally {
     setIsLoading(false);
-  return;} 
-  
-
-   
-    
-    axios.post(`${API_ROUTE_URL}/user/signup`, {
-        email,
-        password,
-        name,
-       iplteam
-    
-        }).then((response) => {
-        console.log(response)
-        const data = response.data as { token: string };
-        localStorage.setItem('token', data.token);
-        setSignupCompleted(true);
-        
-        }).catch((error) => {
-        console.error(error)
-        toast.error("something went wrong", {
-          style: { background: "#EF4444", color: "#FFF" },
-          duration: 2000,
-      });
-
-        })
-    setIsLoading(false)
   }
+};
+
+// handle signup
+const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  setIsLoading(true);
+
+  if (!iplteam) {
+    toast.error("Please select your favorite team", {
+      style: { background: "#EF4444", color: "#FFF" },
+      duration: 2000,
+    });
+    setIsLoading(false);
+    return;
+  }
+
+  try {
+    const response = await axios.post(`${API_ROUTE_URL}/user/signup`, {
+      email,
+      password,
+      name,
+      iplteam,
+    });
+
+    const data = response.data as { token: string };
+    localStorage.setItem("token", data.token);
+    setSignupCompleted(true);
+  } catch (error) {
+    console.error(error);
+    toast.error("Something went wrong", {
+      style: { background: "#EF4444", color: "#FFF" },
+      duration: 2000,
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
 
   return (
