@@ -94,7 +94,7 @@ export default function AuthPage() {
   //handle signup
 
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    
 
     if(!iplteam){
       toast.error("Please select your favorite team", {
@@ -103,6 +103,7 @@ export default function AuthPage() {
 
     })
   return;} 
+  event.preventDefault()
     setIsLoading(true)
 
    
