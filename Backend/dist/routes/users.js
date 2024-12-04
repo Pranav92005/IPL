@@ -18,7 +18,7 @@ const models_1 = require("../models");
 const zod_1 = __importDefault(require("zod"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("../config");
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const authmiddleware_1 = require("../authmiddleware");
 const createUserSchema = zod_1.default.object({
     email: zod_1.default.string().email(),
@@ -38,7 +38,7 @@ userRouter.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.status(400).json("User already exists");
         return;
     }
-    const hashedpassword = yield bcrypt_1.default.hash(req.body.password, 10);
+    const hashedpassword = yield bcryptjs_1.default.hash(req.body.password, 10);
     try {
         const newuser = yield models_1.User.create({
             email: req.body.email,
@@ -73,7 +73,7 @@ userRouter.post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.status(403).json({ message: "User not found" });
         return;
     }
-    const isvalidpassword = yield bcrypt_1.default.compare(req.body.password, user.password);
+    const isvalidpassword = yield bcryptjs_1.default.compare(req.body.password, user.password);
     if (!isvalidpassword) {
         res.status(403).json({ message: "Invalid password" });
         return;
