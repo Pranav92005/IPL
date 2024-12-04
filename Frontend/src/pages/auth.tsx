@@ -95,7 +95,6 @@ export default function AuthPage() {
 
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setIsLoading(true)
 
     if(!iplteam){
       toast.error("Please select your favorite team", {
@@ -103,7 +102,10 @@ export default function AuthPage() {
         duration: 2000,
 
     })
-  return;}
+  return;} 
+    setIsLoading(true)
+
+   
     
     axios.post(`${API_ROUTE_URL}/user/signup`, {
         email,
