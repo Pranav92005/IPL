@@ -127,6 +127,8 @@ export default function Home() {
 
 function Card({ product }: { product:Product}) {
 
+  const imgurl=product.image;
+  const updatedimgurl=imgurl.replace("http://localhost:3000", "https://ipl-07bx.onrender.com");
   
 
   
@@ -139,7 +141,7 @@ function Card({ product }: { product:Product}) {
               <div className="bg-white  md:h-[70vh] p-4 m-2 rounded-lg shadow-md">
               <Link to={`/product/?id=${product._id}`}>
                 <img
-                  src={`${product.image}`}
+                  src={updatedimgurl}
                   alt="product"
                   className="object-contain"
                 />

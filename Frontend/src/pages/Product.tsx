@@ -47,8 +47,14 @@ export default function Product() {
             console.error(error);
             toast.error("Something went wrong");
         });
+        
 
     },[]);
+
+    const imgurl=Product?.image;
+  const updatedimgurl=imgurl?.replace("http://localhost:3000", "https://ipl-07bx.onrender.com");
+  
+
   return (
     <>
     {
@@ -68,7 +74,7 @@ export default function Product() {
           <div>
             <div className="mx-2 mt-6 ">
               <div className="bg-white p-4 m-2 rounded-lg shadow-md h-fit  ">
-                <img src={`${Product?.image}`} alt="product" width={200} className=" object-contain " />
+                <img src={updatedimgurl} alt="product" width={200} className=" object-contain " />
                 <h2 className="text-xl font-bold mt-2">{Product?.name}</h2>
                 <p className="text-gray-700">Price: {Product?.price}</p>
                 <p className="text-gray-700">IPL Team: {Product?.iplteam}</p>
