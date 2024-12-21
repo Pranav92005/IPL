@@ -19,8 +19,14 @@ function App() {
 
     <Route path="/" element={<Dashboard />} />
     <Route path="/auth" element={<AuthPage/>} />
+
+
+
+
+
     <Route path="/home" element={<Home/>} />
     <Route path="/product" element={<Product/>} />
+    
     <Route path="/teamchange" element={<Teamchange/>} />
 
     </Routes>
