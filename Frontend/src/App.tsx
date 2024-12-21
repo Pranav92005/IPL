@@ -1,8 +1,11 @@
 
 import Dashboard from './pages/Dashboard'
+
 import {  Route, Routes } from 'react-router-dom'
 import AuthPage from './pages/auth'
 import Home from './pages/home'
+
+
 import Product from './pages/Product'
 import Teamchange from './pages/Teamchange'
 
